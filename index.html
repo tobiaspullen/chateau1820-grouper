@@ -26,7 +26,7 @@
             <div id="streep1"></div>
             <div id="streep2"></div>
             <div class="button-container" id="button-container">
-              <button id="resetButton">Volgende ronde  ></button>
+              <button id="resetButton">Volgende ronde ></button>
             </div>
         </div>
         
@@ -43,45 +43,49 @@
             <span class="voorkant-tag">VOORKANT</span>
         </div>
     </div>
-    </div>
 
     <script>
-        function updateAvailability() {
-            const totalSeats = 32;
-            const selectedSeats = document.querySelectorAll(".seat.selected").length;
-            const availableSeats = totalSeats - selectedSeats;
-            document.getElementById("availability").textContent = `${availableSeats} plaatsen`;
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            function updateAvailability() {
+                const totalSeats = 32;
+                const selectedSeats = document.querySelectorAll(".seat.selected").length;
+                const availableSeats = totalSeats - selectedSeats;
+                document.getElementById("availability").textContent = `${availableSeats} plaatsen`;
+            }
 
-        function createSeats(containerId) {
-            const container = document.getElementById(containerId);
-            for (let i = 1; i <= 8; i++) {
-                const seat = document.createElement("div");
-                seat.className = "seat";
-                seat.textContent = i;
-                seat.addEventListener("click", function() {
-                    seat.classList.toggle("selected");
+            function createSeats(containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return; // Voorkom fouten als het element niet bestaat
+                for (let i = 1; i <= 8; i++) {
+                    const seat = document.createElement("div");
+                    seat.className = "seat";
+                    seat.textContent = i;
+                    seat.addEventListener("click", function() {
+                        seat.classList.toggle("selected");
+                        updateAvailability();
+                    });
+                    container.appendChild(seat);
+                }
+            }
+
+            // Zorg ervoor dat je alleen stoelen maakt voor de bestaande voertuigen
+            for (let i = 1; i <= 4; i++) {
+                createSeats(`vehicle${i}`);
+            }
+
+            // Zorg dat de resetknop correct werkt
+            const resetButton = document.getElementById("resetButton");
+            if (resetButton) {
+                resetButton.addEventListener("touchstart", function () {
+                    document.querySelectorAll(".seat.selected").forEach(seat => {
+                        seat.classList.remove("selected");
+                    });
                     updateAvailability();
                 });
-                container.appendChild(seat);
+            } else {
+                console.error('Resetknop niet gevonden in de DOM.');
             }
-        }
-        
-        for (let i = 1; i <= 6; i++) {
-            createSeats(`vehicle${i}`);
-        }
-        
-        const buttonContainer = document.getElementById("button-container");
-        const resetButton = document.createElement("button");
-        resetButton.id = "resetButton";
-        resetButton.textContent = "Volgende ronde >";
-        resetButton.addEventListener("click", function() {
-            document.querySelectorAll(".seat.selected").forEach(seat => {
-                seat.classList.remove("selected");
-            });
-            updateAvailability();
         });
-        buttonContainer.appendChild(resetButton);
     </script>
 </body>
 </html>
