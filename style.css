@@ -99,9 +99,8 @@ body {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 51vh;
+    margin-top: 20px;
     justify-content: center;
-    top: 35px;
 }
 
 #resetButton:hover {
@@ -179,7 +178,7 @@ body {
     }
 
     .vehicle-number {
-        font-size: 40px;
+        font-size: 35px;
         width: 40px;
         height: 40px;
     }
@@ -193,7 +192,7 @@ body {
 
     .layout {
         flex-direction: column;
-        gap: 10px;
+        gap: 20px;
     }
 
     .side-containers {
@@ -208,15 +207,62 @@ body {
     #resetButton {
         width: 320px;
         font-size: 30px;
+        margin-top: 15px;
     }
 
     .availability {
-        left: 80px;
+        left: 100px;
         font-size: 30px;
     }
 
     .voorkant-tag {
         font-size: 18px;
         padding: 5px 10px;
+    }
+}
+
+/* Media Queries for phones */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(2, 70px);
+        grid-template-rows: repeat(4, 70px);
+    }
+
+    .vehicle-number {
+        font-size: 30px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .seat {
+        width: 70px;
+        height: 70px;
+        font-size: 25px;
+        line-height: 70px;
+    }
+
+    .layout {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .center-container {
+        width: 280px;
+        height: 350px;
+    }
+
+    #resetButton {
+        width: 280px;
+        font-size: 25px;
+    }
+
+    .availability {
+        left: 80px;
+        font-size: 25px;
+    }
+
+    .voorkant-tag {
+        font-size: 16px;
+        padding: 5px 8px;
     }
 }
