@@ -93,13 +93,19 @@ body {
 }
 
 
-#streep1, #streep2 {
+#streep1 {
+    border: 1px solid;
+    height: 0px;
+    width: 385px;
+    color: #22211f;
+    transform: translateY(70px);
+}
+#streep2 {
     border: 1px solid;
     height: 0px;
     width: 385px;
     color: #22211f;
 }
-
 
 #resetButton {
     background-color: #f2797e;
