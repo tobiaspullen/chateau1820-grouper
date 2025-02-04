@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
+
 body {
     display: flex;
     justify-content: center;
@@ -8,7 +9,9 @@ body {
     background-color: #22211f;
     flex-direction: column;
     font-family: "Alegreya", serif;
+    zoom: 0.8;
 }
+
 
 .container {
     display: grid;
@@ -19,9 +22,8 @@ body {
     padding: 15px;
     border: 4px #41403c;
     border-radius: 20px;
-    max-width: 100%; /* Zorgt ervoor dat de container zich goed schaalt */
-    box-sizing: border-box;
 }
+
 
 .vehicle-number {
     display: flex;
@@ -38,19 +40,23 @@ body {
     top: -10px;
 }
 
+
 .left-side {
     left: -60px;
     top: 45%;
 }
+
 
 .right-side {
     right: -60px;
     top: 45%;
 }
 
+
 .vehicle-container {
     position: relative;
 }
+
 
 .seat {
     width: 90px;
@@ -66,9 +72,11 @@ body {
     font-weight: bold;
 }
 
+
 .selected {
     background-color: #2c9825 !important;
 }
+
 
 .layout {
     display: flex;
@@ -77,11 +85,13 @@ body {
     gap: 20px;
 }
 
+
 .side-containers {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+
 
 #streep1, #streep2 {
     border: 1px solid;
@@ -89,6 +99,7 @@ body {
     width: 385px;
     color: #22211f;
 }
+
 
 #resetButton {
     background-color: #f2797e;
@@ -101,20 +112,22 @@ body {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 51vh;
+    margin-top: 20px;
     justify-content: center;
-    top: 35px;
 }
+
 
 #resetButton:hover {
     background-color: #bc4251;
 }
+
 
 .button-container {
     margin-top: 0px;
     display: flex;
     justify-content: center;
 }
+
 
 .center-container {
     display: flex;
@@ -129,6 +142,7 @@ body {
     border-radius: 20px;
 }
 
+
 .availability {
     position: absolute;
     top: 20px;
@@ -137,6 +151,7 @@ body {
     color: white;
     font-family: "Alegreya", serif;
 }
+
 
 .voorkant-tag {
     display: flex;
@@ -154,6 +169,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
+
 
 .voorkant-tag-bottom {
     display: flex;
@@ -173,19 +189,21 @@ body {
     margin-top: -5px;
 }
 
+
 /* Media Queries for iPad */
 @media (max-width: 1024px) {
     .container {
         grid-template-columns: repeat(4, 80px);
         grid-template-rows: repeat(2, 80px);
-        width: 100%; /* Zorgen dat de container niet ingezoomd raakt */
     }
 
+
     .vehicle-number {
-        font-size: 40px;
+        font-size: 35px;
         width: 40px;
         height: 40px;
     }
+
 
     .seat {
         width: 80px;
@@ -194,29 +212,36 @@ body {
         line-height: 80px;
     }
 
+
     .layout {
         flex-direction: column;
-        gap: 10px;
+        gap: 20px;
     }
+
 
     .side-containers {
         align-items: center;
     }
+
 
     .center-container {
         width: 320px;
         height: 400px;
     }
 
+
     #resetButton {
         width: 320px;
         font-size: 30px;
+        margin-top: 15px;
     }
 
+
     .availability {
-        left: 80px;
+        left: 100px;
         font-size: 30px;
     }
+
 
     .voorkant-tag {
         font-size: 18px;
@@ -224,18 +249,56 @@ body {
     }
 }
 
-/* Extra Media Query for larger screens (computer screens) */
-@media (min-width: 1025px) {
+
+/* Media Queries for phones */
+@media (max-width: 768px) {
     .container {
-        max-width: 90%; /* Zorgt ervoor dat de container iets kleiner wordt voor grotere schermen */
+        grid-template-columns: repeat(2, 70px);
+        grid-template-rows: repeat(4, 70px);
     }
+
+
+    .vehicle-number {
+        font-size: 30px;
+        width: 35px;
+        height: 35px;
+    }
+
 
     .seat {
-        font-size: 35px; /* Vermijden dat stoelen te groot worden */
+        width: 70px;
+        height: 70px;
+        font-size: 25px;
+        line-height: 70px;
     }
+
 
     .layout {
-        gap: 30px; /* Vergroot de ruimte tussen de container en de zijkanten */
+        flex-direction: column;
+        gap: 15px;
+    }
+
+
+    .center-container {
+        width: 280px;
+        height: 350px;
+    }
+
+
+    #resetButton {
+        width: 280px;
+        font-size: 25px;
+    }
+
+
+    .availability {
+        left: 80px;
+        font-size: 25px;
+    }
+
+
+    .voorkant-tag {
+        font-size: 16px;
+        padding: 5px 8px;
     }
 }
-
