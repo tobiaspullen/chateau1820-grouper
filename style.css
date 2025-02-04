@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+body {
+         
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+         background-color: #22211f;
+         flex-direction: column;
+         font-family: "Alegreya", serif; 
+     }
+     .container {
+         display: grid;
+         grid-template-columns: repeat(4, 90px);
+         grid-template-rows: repeat(2, 90px);
+         grid-gap: 10px; /* Increased gap between seats */
+         background: #41403c;
+         padding: 15px;
+         border: 4px #41403c;
+         border-radius: 20px;
+     }
+     .vehicle-number {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 50px;
+         height: 50px;
+         border-radius: 50%;
+         background-color: white;
+         color: black;
+         font-size: 45px;
+         font-family: "Alegreya", serif;
+         position: absolute;
+         top: -10px;
+     }
+     .left-side {
+         left: -60px;
+         top: 45%;
+     }
+     .right-side {
+         right: -60px;
+         top: 45%;
+     }
+     .vehicle-container {
+         position: relative;
+     }
+
+     .seat {
+         width: 90px;
+         height: 90px;
+         background-color: #22211f;
+         transition: background-color 0.3s;
+         text-align: center;
+         color: white;
+         font-size: 40px;
+         line-height: 100px;
+         border-radius: 20px 20px 0px 0px;
+         cursor: pointer;
+         font-weight: bold;
+     }
+     .selected {
+         transition: background-color 0.3s;
+         background-color: #2c9825 !important;
+     }
+     .layout {
+         display: flex;
+         justify-content: center;
+         align-items: flex-start; /* Aligns all containers to the top */
+         gap: 20px;
+     }
+     .side-containers {
+         display: flex;
+         flex-direction: column;
+         gap: 20px;
+     }
+     #streep1 {
+        border: 1px solid;
+        height: 0px;
+        width: 385px;
+        color: #22211f;
+        transform: translateY(70px);
+        top: -1000px
+     }
+     #streep2 {
+        border: 1px solid;
+        height: 0px;
+        width: 385px;
+        color: #22211f;
+        transform: translateY(360px);
+        top: -1000px
+     }
+     #resetButton {
+         align-items: flex-start;
+         flex-direction: column;
+         position: relative;
+         background-color: #f2797e;
+         width: 385px;
+         height: 60px;
+         color: black;
+         font-family: "Alegreya", serif;
+         font-size: 35px;
+         border: none;
+         border-radius: 10px;
+         cursor: pointer;
+         transition: background-color 0.3s;
+         margin-top: 51vh;
+         justify-content: center;
+         top: 35px;
+     }
+     #resetButton:hover {
+         background-color: #bc4251;
+     }
+     .button-container {
+         margin-top: 0px; /* Ensures spacing below the center container */
+         display: flex;
+         justify-content: center;
+     }
+     .center-container {
+         display: flex;
+         height:455px;
+         width: 385px;
+         background-color:#41403c;
+         flex-direction: column;
+         align-items: flex-start;
+         justify-content: flex-start;
+         padding: 20px;
+         position: relative;
+         border-radius: 20px;
+     }
+     .availability {
+         position: absolute;
+         top: 20px;
+         left: 120px;
+         font-size: 40px;
+         color: white;
+         font-family: "Alegreya", serif;
+     }
+     .voorkant-tag {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-top: -25px;
+         font-size: 20px;
+         color: white;
+         font-family: "Alegreya", serif;
+         background: #333132;
+         padding: 5px 20px;
+         border-radius: 10px;
+         width: fit-content;
+         position: relative;
+         left: 50%;
+         transform: translateX(-50%);
+     }
+     .voorkant-tag-bottom {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-top: -25px;
+         font-size: 20px;
+         color: white;
+         font-family: "Alegreya", serif;
+         background: #333132;
+         padding: 5px 20px;
+         border-radius: 10px;
+         width: fit-content;
+         position: relative;
+         left: 50%;
+         transform: translateX(-50%);
+         margin-top: -5px;
+     }
+     

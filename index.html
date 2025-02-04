@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Château 1820 | Grouper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout">
+        <div class="side-containers">
+            <div class="vehicle-container">
+                <div class="container" id="vehicle1"></div>
+                <span class="vehicle-number left-side">1</span>
+            </div>
+            <span class="voorkant-tag">VOORKANT</span>
+            <div class="vehicle-container">
+                <div class="container" id="vehicle2"></div>
+                <span class="vehicle-number left-side">2</span>
+            </div>
+            <span class="voorkant-tag">VOORKANT</span>
+        </div>
+        
+        <div class="center-container">
+            <div class="availability" id="availability">32 plaatsen</div>
+            <div id="streep1"></div>
+            <div id="streep2"></div>
+            <div class="button-container" id="button-container">
+              <button id="resetButton">Volgende ronde  ></button>
+            </div>
+        </div>
+        
+        <div class="side-containers">
+            <div class="vehicle-container">
+                <div class="container" id="vehicle3"></div>
+                <span class="vehicle-number right-side">3</span>
+            </div>
+            <span class="voorkant-tag">VOORKANT</span>
+            <div class="vehicle-container">
+                <div class="container" id="vehicle4"></div>
+                <span class="vehicle-number right-side">4</span>
+            </div>
+            <span class="voorkant-tag">VOORKANT</span>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function updateAvailability() {
+            const totalSeats = 32;
+            const selectedSeats = document.querySelectorAll(".seat.selected").length;
+            const availableSeats = totalSeats - selectedSeats;
+            document.getElementById("availability").textContent = `${availableSeats} plaatsen`;
+        }
+
+        function createSeats(containerId) {
+            const container = document.getElementById(containerId);
+            for (let i = 1; i <= 8; i++) {
+                const seat = document.createElement("div");
+                seat.className = "seat";
+                seat.textContent = i;
+                seat.addEventListener("click", function() {
+                    seat.classList.toggle("selected");
+                    updateAvailability();
+                });
+                container.appendChild(seat);
+            }
+        }
+        
+        for (let i = 1; i <= 6; i++) {
+            createSeats(`vehicle${i}`);
+        }
+        
+        const buttonContainer = document.getElementById("button-container");
+        const resetButton = document.createElement("button");
+        resetButton.id = "resetButton";
+        resetButton.textContent = "Volgende ronde >";
+        resetButton.addEventListener("click", function() {
+            document.querySelectorAll(".seat.selected").forEach(seat => {
+                seat.classList.remove("selected");
+            });
+            updateAvailability();
+        });
+        buttonContainer.appendChild(resetButton);
+    </script>
+</body>
+</html>
