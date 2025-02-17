@@ -69,12 +69,27 @@ body {
     line-height: 100px;
     border-radius: 20px 20px 0px 0px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: bold
 }
 
-
 .selected {
-    background-color: #2c9825 !important;
+    background-color: green;
+    position: relative;
+    color: transparent;
+}
+
+.selected::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+    height: 25px;
+    background-image: url('https://lh4.googleusercontent.com/proxy/EYTz3glk_LyRa5LAzbXOxoD128M8g6X8PK-xTg0g0MstHTmixaZkA_ponR71ApUmn4DjzqbY90MdBqe9InqPG5Y619MtA5J2IAhniXaa6KQxIqVPno-dujlmkUvaS_2fja9t');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: green;
 }
 
 
@@ -92,6 +107,13 @@ body {
     gap: 20px;
 }
 
+#version {
+    color: white;
+    position: absolute;
+    transform: translateX(160px);
+    top: 500px;
+    width: 380px;
+}
 
 #streep1 {
     border: 1px solid;
