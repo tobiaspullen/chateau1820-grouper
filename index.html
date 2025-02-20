@@ -21,7 +21,7 @@
             <span class="voorkant-tag">VOORKANT</span>
         </div>
         <div class="center-container">
-            <div id="version">Versie 1.2</div>
+            <div id="version">Versie 1.3</div>
             <div class="availability" id="availability">32 plaatsen</div>
             <div id="streep1"></div>
             <div id="streep2"></div>
@@ -34,9 +34,19 @@
                 <button id="startTimerButton">Start</button>
                 <div id="timer">-</div>
                 <button id="resetTimerButton">Reset</button>
-
+            </div>
+            <div class="color-buttons">
+                <button class="color-btn" style="background-color: green;" data-color="green"></button>
+                <button class="color-btn" style="background-color: red;" data-color="red"></button>
+                <button class="color-btn" style="background-color: blue;" data-color="blue"></button>
+                <button class="color-btn" style="background-color: #738e8a;" data-color="#738e8a"></button>
+                <button class="color-btn" style="background-color: purple;" data-color="purple"></button>
+                <button class="color-btn" style="background-color: orange;" data-color="orange"></button>
+                <button class="color-btn" style="background-color: pink;" data-color="pink"></button>
+                <button class="color-btn" style="background-color: #8a6642;" data-color="#8a6642"></button>
             </div>
         </div>
+        
         <div class="side-containers">
             <div class="vehicle-container">
                 <div class="container" id="vehicle3"></div>
@@ -50,118 +60,118 @@
             <span class="voorkant-tag">VOORKANT</span>
         </div>
     </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const totalSeats = 32; // Totaal aantal stoelen
+    let timerDuration = 4 * 60; // 4 minuten in seconden
+    let timerInterval;
+    let selectedColor = null; // De kleur die geselecteerd is door de knop
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Functie om beschikbaarheid bij te werken
-            function updateAvailability() {
-                const totalSeats = 32;
-                const selectedSeats = document.querySelectorAll(".seat.selected").length;
-                const availableSeats = totalSeats - selectedSeats;
-                document.getElementById("availability").textContent = `${availableSeats} plaatsen over`;
-            }
+    // Functie om de beschikbaarheid bij te werken
+    function updateAvailability() {
+        const selectedSeats = document.querySelectorAll(".seat.selected").length;
+        const availableSeats = totalSeats - selectedSeats;
+        document.getElementById("availability").textContent = `${availableSeats} plaatsen over`;
+    }
 
-            // Functie om stoelen te creëren voor elk voertuig
-            function createSeats(containerId) {
-                const container = document.getElementById(containerId);
-                if (!container) return; // Voorkom fouten als het element niet bestaat
+    // Functie om stoelen te maken voor elk voertuig
+    function createSeats(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return; // Voorkom fouten als het element niet bestaat
 
-                for (let i = 1; i <= 8; i++) {
-                    const seat = document.createElement("div");
-                    seat.className = "seat";
-                    seat.textContent = i;
+        for (let i = 1; i <= 8; i++) {
+            const seat = document.createElement("div");
+            seat.className = "seat";
+            seat.textContent = i;
 
-                    // Voeg eventlistener toe om te schakelen tussen geselecteerd en niet-geselecteerd
-                    seat.addEventListener("click", function () {
-                        seat.classList.toggle("selected");
-                        updateAvailability();
-                    });
-
-                    container.appendChild(seat);
-                }
-            }
-
-            // Maak stoelen voor de voertuigen 1 t/m 4
-            for (let i = 1; i <= 4; i++) {
-                createSeats(`vehicle${i}`);
-            }
-
-            // Resetknop functionaliteit
-            const resetButton = document.getElementById("resetButton");
-            if (resetButton) {
-                resetButton.addEventListener("click", function () {
-                    // Verwijder de 'selected' klasse van alle stoelen
-                    document.querySelectorAll(".seat.selected").forEach(seat => {
-                        seat.classList.remove("selected");
-                    });
-                    updateAvailability();  // Werk de beschikbaarheid bij
-                });
-            } else {
-                console.error('Resetknop niet gevonden in de DOM.');
-            }
-
-            // Timer van 4 minuten
-            let timerDuration = 4 * 60; // 4 minuten in seconden
-            const timerDisplay = document.getElementById("timer");
-
-            let timerInterval;
-
-            // Functie om de timer bij te werken
-            function updateTimer() {
-                const minutes = Math.floor(timerDuration / 60);
-                const seconds = timerDuration % 60;
-                timerDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-                if (timerDuration > 0) {
-                    timerDuration--;
+            // Voeg eventlistener toe om de stoel te selecteren/deselecteren
+            seat.addEventListener("click", function () {
+                if (seat.classList.contains("selected")) {
+                    // Als de stoel geselecteerd is, deselecteer deze en reset de kleur
+                    seat.classList.remove("selected");
+                    seat.style.backgroundColor = ''; // Reset de kleur naar de standaardkleur
                 } else {
-                    clearInterval(timerInterval); // Stop de timer als deze op 0 komt
-                    alert("De tijd is om! Reset de stoelen voor de volgende ronde.");
+                    // Als de stoel niet geselecteerd is, voeg de geselecteerde kleur toe
+                    if (selectedColor) {
+                        seat.style.backgroundColor = selectedColor;
+                    }
+                    seat.classList.add("selected");
                 }
-            }
+                updateAvailability();
+            });
 
-            // Start de timer
-            function startTimer() {
-                if (timerInterval) return; // Voorkom dat meerdere timers starten
-                timerInterval = setInterval(updateTimer, 1000); // Werk elke seconde de timer bij
-                updateTimer(); // Zorg ervoor dat de timer meteen begint
-            }
+            container.appendChild(seat);
+        }
+    }
 
-            // Stop de timer
-            function stopTimer() {
-                clearInterval(timerInterval);
-                timerInterval = null;
-            }
+    // Stoelen maken voor voertuigen 1 t/m 4
+    for (let i = 1; i <= 4; i++) {
+        createSeats(`vehicle${i}`);
+    }
 
-            // Reset de timer naar de oorspronkelijke waarde
-            function resetTimer() {
-                stopTimer(); // Stop de timer
-                timerDuration = 4 * 60; // Zet de timer weer naar 4 minuten
-                updateTimer(); // Werk de timer display bij
-            }
-
-            // Start de timer bij het laden van de pagina
-            // startTimer();  // Verwijder deze lijn om de timer niet automatisch te starten
-
-            // Start Timer knop functionaliteit
-            const startTimerButton = document.getElementById("startTimerButton");
-            if (startTimerButton) {
-                startTimerButton.addEventListener("click", function () {
-                    startTimer();
-                });
-            }
-
-            // Reset Timer knop functionaliteit
-            const resetTimerButton = document.getElementById("resetTimerButton");
-            if (resetTimerButton) {
-                resetTimerButton.addEventListener("click", function () {
-                    resetTimer();
-                });
-            }
-
-            // Initialiseer de beschikbaarheid
-            updateAvailability();
+    // Resetknop functionaliteit
+    const resetButton = document.getElementById("resetButton");
+    resetButton.addEventListener("click", function () {
+        // Verwijder de 'selected' klasse van alle stoelen en reset de kleur
+        document.querySelectorAll(".seat.selected").forEach(seat => {
+            seat.classList.remove("selected");
+            seat.style.backgroundColor = ''; // Reset de kleur
         });
-    </script>
+        updateAvailability();  // Werk de beschikbaarheid bij
+    });
+
+    // Timer functionaliteit
+    const timerDisplay = document.getElementById("timer");
+
+    function updateTimer() {
+        const minutes = Math.floor(timerDuration / 60);
+        const seconds = timerDuration % 60;
+        timerDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timerDuration > 0) {
+            timerDuration--;
+        } else {
+            clearInterval(timerInterval); // Stop de timer als deze op 0 komt
+            alert("De tijd is om! Reset de stoelen voor de volgende ronde.");
+        }
+    }
+
+    function startTimer() {
+        if (timerInterval) return; // Voorkom dat meerdere timers starten
+        timerInterval = setInterval(updateTimer, 1000); // Werk elke seconde de timer bij
+        updateTimer(); // Zorg ervoor dat de timer meteen begint
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+
+    function resetTimer() {
+        stopTimer(); // Stop de timer
+        timerDuration = 4 * 60; // Zet de timer weer naar 4 minuten
+        updateTimer(); // Werk de timer display bij
+    }
+
+    // Timer start knop
+    const startTimerButton = document.getElementById("startTimerButton");
+    startTimerButton.addEventListener("click", startTimer);
+
+    // Timer reset knop
+    const resetTimerButton = document.getElementById("resetTimerButton");
+    resetTimerButton.addEventListener("click", resetTimer);
+
+    // Functie voor de kleurknoppen
+    const colorButtons = document.querySelectorAll(".color-btn");
+    colorButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            selectedColor = button.getAttribute("data-color"); // Stel de geselecteerde kleur in
+        });
+    });
+
+    // Initialiseer de beschikbaarheid
+    updateAvailability();
+});
+</script>
 </body>
 </html>
