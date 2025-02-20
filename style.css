@@ -85,10 +85,9 @@ body {
     transform: translate(-50%, -50%);
     width: 50px;
     height: 50px;
-    background-image: url('https://lh6.googleusercontent.com/47WIi-sM_C7FftnhdweRr3O135zZT_BnABMjy6H0-gWmHg1iqWZp4SxJ9UnDF7sdApFBVL6C6SpsfbkClb615wk=w1280');
+    background-image: url('https://lh3.googleusercontent.com/fIx67l0zDLdLDMmeAMRx1EWbaGLHGHpv0aL0CazNLYFotlZM-OumEOUl4jhljbG-dCctUZ8UQLnOFIA_gURhoQA=w1280');
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: green;
 }
 
 
@@ -254,6 +253,24 @@ body {
 #resetTimerButton:hover,
 #startTimerButton:hover {
     background-color: #292826;
+}
+.color-btn {
+    width: 30px;
+    height: 70px;
+    background-color: #22211f;
+    text-align: center;
+    color: black;
+    font-size: 40px;
+    line-height: 100px;
+    border-radius: 20px 20px 0px 0px;
+    cursor: pointer;
+    border-color: #22211f;
+    border: 3px solid;
+}
+.color-buttons {
+    position: absolute;
+    bottom: 125px;
+    left: 35px;
 }
 
 /* Media Queries for iPad */
