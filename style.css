@@ -91,6 +91,7 @@ body {
     background-color: green;
 }
 
+
 .layout {
     display: flex;
     justify-content: center;
@@ -127,6 +128,13 @@ body {
     color: #22211f;
     transform: translateY(370px);
 }
+#streep3 {
+    border: 1px solid;
+    height: 0px;
+    width: 385px;
+    color: #22211f;
+    transform: translateY(170px);
+}
 
 #resetButton {
     background-color: #f2797e;
@@ -134,14 +142,14 @@ body {
     height: 60px;
     color: black;
     font-family: "Alegreya", serif;
-    font-size: 35px;
-    border: none;
+    font-size: 25px;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 20px;
     justify-content: center;
     transform: translateY(370px);
+    border: 6px solid #c7545b;
 }
 
 
@@ -174,7 +182,7 @@ body {
 .availability {
     position: absolute;
     top: 20px;
-    left: 120px;
+    left: 85px;
     font-size: 40px;
     color: white;
     font-family: "Alegreya", serif;
@@ -217,6 +225,36 @@ body {
     margin-top: -5px;
 }
 
+#timer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#timer {
+    font-size: 30px;
+    color: white;
+}
+
+#resetTimerButton,
+#startTimerButton {
+    font-size: 20px;
+    background-color: #333132;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 20px;
+    border: 6px solid #292826;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Alegreya", serif;
+}
+
+#resetTimerButton:hover,
+#startTimerButton:hover {
+    background-color: #292826;
+}
 
 /* Media Queries for iPad */
 @media (max-width: 1024px) {
