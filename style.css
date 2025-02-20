@@ -62,7 +62,6 @@ body {
     width: 90px;
     height: 90px;
     background-color: #22211f;
-    transition: background-color 0.3s;
     text-align: center;
     color: white;
     font-size: 40px;
@@ -84,14 +83,13 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 25px;
-    height: 25px;
-    background-image: url('https://lh4.googleusercontent.com/proxy/EYTz3glk_LyRa5LAzbXOxoD128M8g6X8PK-xTg0g0MstHTmixaZkA_ponR71ApUmn4DjzqbY90MdBqe9InqPG5Y619MtA5J2IAhniXaa6KQxIqVPno-dujlmkUvaS_2fja9t');
+    width: 50px;
+    height: 50px;
+    background-image: url('https://lh6.googleusercontent.com/47WIi-sM_C7FftnhdweRr3O135zZT_BnABMjy6H0-gWmHg1iqWZp4SxJ9UnDF7sdApFBVL6C6SpsfbkClb615wk=w1280');
     background-size: contain;
     background-repeat: no-repeat;
     background-color: green;
 }
-
 
 .layout {
     display: flex;
