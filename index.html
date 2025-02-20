@@ -21,16 +21,22 @@
             <span class="voorkant-tag">VOORKANT</span>
         </div>
         <div class="center-container">
-            <div id="version">Versie 1.1</div>
+            <div id="version">Versie 1.2</div>
             <div class="availability" id="availability">32 plaatsen</div>
             <div id="streep1"></div>
             <div id="streep2"></div>
+            <div id="streep3"></div>
             <div class="button-container" id="button-container">
-              <button id="resetButton">Volgende ronde</button>
+                <button id="resetButton">Volgende ronde ></button>
             </div>
-        
+            <!-- Timer wordt hier toegevoegd -->
+            <div id="timer-container">
+                <button id="startTimerButton">Start</button>
+                <div id="timer">-</div>
+                <button id="resetTimerButton">Reset</button>
+
+            </div>
         </div>
-        
         <div class="side-containers">
             <div class="vehicle-container">
                 <div class="container" id="vehicle3"></div>
@@ -47,45 +53,114 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Functie om beschikbaarheid bij te werken
             function updateAvailability() {
                 const totalSeats = 32;
                 const selectedSeats = document.querySelectorAll(".seat.selected").length;
                 const availableSeats = totalSeats - selectedSeats;
-                document.getElementById("availability").textContent = `${availableSeats} plaatsen`;
+                document.getElementById("availability").textContent = `${availableSeats} plaatsen over`;
             }
 
+            // Functie om stoelen te creëren voor elk voertuig
             function createSeats(containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return; // Voorkom fouten als het element niet bestaat
+
                 for (let i = 1; i <= 8; i++) {
                     const seat = document.createElement("div");
                     seat.className = "seat";
                     seat.textContent = i;
-                    seat.addEventListener("click", function() {
+
+                    // Voeg eventlistener toe om te schakelen tussen geselecteerd en niet-geselecteerd
+                    seat.addEventListener("click", function () {
                         seat.classList.toggle("selected");
                         updateAvailability();
                     });
+
                     container.appendChild(seat);
                 }
             }
 
-            // Zorg ervoor dat je alleen stoelen maakt voor de bestaande voertuigen
+            // Maak stoelen voor de voertuigen 1 t/m 4
             for (let i = 1; i <= 4; i++) {
                 createSeats(`vehicle${i}`);
             }
 
-            // Zorg dat de resetknop correct werkt
+            // Resetknop functionaliteit
             const resetButton = document.getElementById("resetButton");
             if (resetButton) {
-                resetButton.addEventListener("touchstart", function () {
+                resetButton.addEventListener("click", function () {
+                    // Verwijder de 'selected' klasse van alle stoelen
                     document.querySelectorAll(".seat.selected").forEach(seat => {
                         seat.classList.remove("selected");
                     });
-                    updateAvailability();
+                    updateAvailability();  // Werk de beschikbaarheid bij
                 });
             } else {
                 console.error('Resetknop niet gevonden in de DOM.');
             }
+
+            // Timer van 4 minuten
+            let timerDuration = 4 * 60; // 4 minuten in seconden
+            const timerDisplay = document.getElementById("timer");
+
+            let timerInterval;
+
+            // Functie om de timer bij te werken
+            function updateTimer() {
+                const minutes = Math.floor(timerDuration / 60);
+                const seconds = timerDuration % 60;
+                timerDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (timerDuration > 0) {
+                    timerDuration--;
+                } else {
+                    clearInterval(timerInterval); // Stop de timer als deze op 0 komt
+                    alert("De tijd is om! Reset de stoelen voor de volgende ronde.");
+                }
+            }
+
+            // Start de timer
+            function startTimer() {
+                if (timerInterval) return; // Voorkom dat meerdere timers starten
+                timerInterval = setInterval(updateTimer, 1000); // Werk elke seconde de timer bij
+                updateTimer(); // Zorg ervoor dat de timer meteen begint
+            }
+
+            // Stop de timer
+            function stopTimer() {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+
+            // Reset de timer naar de oorspronkelijke waarde
+            function resetTimer() {
+                stopTimer(); // Stop de timer
+                timerDuration = 4 * 60; // Zet de timer weer naar 4 minuten
+                updateTimer(); // Werk de timer display bij
+            }
+
+            // Start de timer bij het laden van de pagina
+            // startTimer();  // Verwijder deze lijn om de timer niet automatisch te starten
+
+            // Start Timer knop functionaliteit
+            const startTimerButton = document.getElementById("startTimerButton");
+            if (startTimerButton) {
+                startTimerButton.addEventListener("click", function () {
+                    startTimer();
+                });
+            }
+
+            // Reset Timer knop functionaliteit
+            const resetTimerButton = document.getElementById("resetTimerButton");
+            if (resetTimerButton) {
+                resetTimerButton.addEventListener("click", function () {
+                    resetTimer();
+                });
+            }
+
+            // Initialiseer de beschikbaarheid
+            updateAvailability();
         });
     </script>
 </body>
